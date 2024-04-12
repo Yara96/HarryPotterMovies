@@ -11,11 +11,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MoviesService } from '../../core/services/movies.service';
 import { Movie } from '../../core/models/movie.model';
 import { CustomCurrencyPipe } from '../../core/pipes/custom-currency.pipe';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-movie-list',
   standalone: true,
-  imports: [CommonModule, CustomCurrencyPipe],
+  imports: [CommonModule, CustomCurrencyPipe, RouterOutlet],
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,8 +30,17 @@ export class MovieListComponent implements OnInit {
   private moviesService = inject(MoviesService);
   protected destroyRef = inject(DestroyRef);
   private changeDetectorRef = inject(ChangeDetectorRef);
+  private router = inject(Router);
 
   ngOnInit(): void {
+    this.getMovieList();
+  }
+
+  trackById(index: number, item: Movie): string {
+    return item.id;
+  }
+
+  private getMovieList(): void {
     this.moviesService
       .getMovies()
       .pipe(takeUntilDestroyed(this.destroyRef))
@@ -42,11 +52,8 @@ export class MovieListComponent implements OnInit {
       });
   }
 
-  trackById(index: number, item: Movie): string {
-    return item.id;
-  }
-
-  selectMovie(movie: Movie): void {
+  protected selectMovie(movie: Movie): void {
     this.moviesService.setSelectedMovie(movie);
+    this.router.navigate(['/movies', movie.id]);
   }
 }

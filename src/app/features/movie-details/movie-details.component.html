@@ -1,0 +1,13 @@
+<p>movie-details-component works!</p>
+<ng-container *ngIf="movie">
+    <div>
+        {{movie.summary}}
+    </div>
+    <table>
+        <div>
+            {{movie.box_office}}
+        </div>
+    </table>
+
+<button (click)="backToHomepage()"></button>
+</ng-container>
