@@ -20,7 +20,7 @@ import { Movie } from '../../core/models/movie.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MovieListComponent implements OnInit {
-  movies: Movie[] = [];
+  protected movies: Movie[] = [];
   isList: boolean = false;
 
   private moviesService = inject(MoviesService);
@@ -31,9 +31,12 @@ export class MovieListComponent implements OnInit {
     this.moviesService
       .getMovies()
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((movies: Movie[]) =>
-        movies.forEach((movie: Movie) => this.movies.push(movie))
-      );
+      .subscribe((movies: Movie[]) => {
+        movies.forEach((movie: Movie) => {
+          this.movies.push(movie);
+        });
+        this.changeDetectorRef.markForCheck();
+      });
   }
 
   trackById(index: number, item: Movie): string {

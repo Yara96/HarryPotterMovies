@@ -1,15 +1,13 @@
 <h1>Harry Potter Movies</h1>
 <ng-container *ngIf="movies" class="movie-list">
-    <span *ngFor="let movie of movies; trackBy: trackById" class="movie-card">
-      <h2>{{ movie.title }}</h2>
-      <div class="movie-details">
-        <span
-          >{{ movie.release_date | date : "yyyy/mm/dd" }} {{ movie.budget }}
-          {{ movie.duration }}</span
-        >
-      </div>
-      <button class="details-button" (click)="selectMovie(movie)">
-        Details
-      </button>
-    </span>
+  <span *ngFor="let movie of movies; trackBy: trackById" class="movie-card">
+    <h2>{{ movie.title }}</h2>
+    <div class="movie-details">
+      <span
+        >{{ movie.release_date | date }} {{ movie.budget }}
+        {{ movie.duration }}</span
+      >
+    </div>
+    <button class="details-button" (click)="selectMovie(movie)">Details</button>
+  </span>
 </ng-container>
