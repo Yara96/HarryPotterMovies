@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Movie } from '../models/movie.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MoviesService {
+
+  private selectedMovieSubject = new BehaviorSubject<Movie | null>(null);
+  selectedMovie$ = this.selectedMovieSubject.asObservable();
 
   constructor() { }
 
@@ -18,5 +21,9 @@ export class MoviesService {
 
   getMovies(): Observable<Movie[]>{
     return this.httpClient.get<Movie[]>(`/movies`);
+  }
+
+  setSelectedMovie(movie: Movie): void {
+    this.selectedMovieSubject.next(movie);
   }
 }

@@ -1,0 +1,25 @@
+.movie-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .movie-card {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    align-items: flex-start;
+  }
+  
+  .movie-card h2 {
+    margin-right: auto; /* Push the button to the right */
+  }
+  
+  .movie-details {
+    margin-left: 20px; /* Add some space between title and details */
+  }
+  
+  .details-button {
+    margin-left: auto; /* Align the button to the right */
+  }
