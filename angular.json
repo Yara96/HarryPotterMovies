@@ -26,7 +26,8 @@
               "src/mockServiceWorker.js"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/app/app.component.css"
             ],
             "scripts": []
           },

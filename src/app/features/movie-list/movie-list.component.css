@@ -4,12 +4,14 @@
   }
   
   .movie-card {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
     margin-bottom: 20px;
+    background-color:rgb(197, 183, 161);
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    display: flex;
-    align-items: flex-start;
   }
   
   .movie-card h2 {

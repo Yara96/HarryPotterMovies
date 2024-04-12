@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -10,18 +10,21 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MoviesService } from '../../core/services/movies.service';
 import { Movie } from '../../core/models/movie.model';
+import { CustomCurrencyPipe } from '../../core/pipes/custom-currency.pipe';
 
 @Component({
   selector: 'app-movie-list',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CustomCurrencyPipe],
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MovieListComponent implements OnInit {
   protected movies: Movie[] = [];
-  isList: boolean = false;
+  protected releaseDateTitle: string = 'Release Date';
+  protected budgetTitle: string = 'Budget';
+  protected durationTitle: string = 'Duration';
 
   private moviesService = inject(MoviesService);
   protected destroyRef = inject(DestroyRef);
