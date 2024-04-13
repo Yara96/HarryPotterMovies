@@ -12,6 +12,8 @@ import { MoviesService } from '../../core/services/movies.service';
 import { Movie } from '../../core/models/movie.model';
 import { CustomCurrencyPipe } from '../../core/pipes/custom-currency.pipe';
 import { Router, RouterOutlet } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Observable, Subscription, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-movie-list',
@@ -26,14 +28,25 @@ export class MovieListComponent implements OnInit {
   protected releaseDateTitle: string = 'Release Date';
   protected budgetTitle: string = 'Budget';
   protected durationTitle: string = 'Duration';
+  protected movieFilters: FormGroup = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+  }); //check this default value later
+  // protected releaseDateResults$: Observable<Movie[]> = [];
+
 
   private moviesService = inject(MoviesService);
   protected destroyRef = inject(DestroyRef);
   private changeDetectorRef = inject(ChangeDetectorRef);
   private router = inject(Router);
+  private formBuilder = inject(FormBuilder);
 
   ngOnInit(): void {
     this.getMovieList();
+    // this.releaseDateResults$ = this.releaseDateControl.valueChanges
+    //  .pipe(
+   //     switchMap(releaseDate => this.searchService.search(searchString))
+    //  )
   }
 
   trackById(index: number, item: Movie): string {
@@ -52,7 +65,7 @@ export class MovieListComponent implements OnInit {
       });
   }
 
-  protected selectMovie(movie: Movie): void {
-    this.router.navigate(['/movies', movie.id]);
+  protected selectMovie(movieId: string): void {
+    this.router.navigate(['/movies', movieId]);
   }
 }

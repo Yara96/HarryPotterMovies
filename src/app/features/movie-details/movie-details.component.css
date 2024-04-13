@@ -1,0 +1,57 @@
+/* Block */
+.movie-details {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Element */
+.movie-details__button {
+    margin-bottom: 20px;
+    display: block;
+    text-align: center;
+}
+
+.movie-details__title {
+    text-align: center;
+}
+
+.movie-details__content {
+    display: flex;
+    align-items: flex-start;
+}
+
+.movie-details__info {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.movie-details__image {
+    max-width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.movie-details__summary {
+    flex: 1;
+}
+
+.movie-details__summary p {
+    margin: 0;
+}
+
+.movie-details__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Modifier */
+.movie-details__heading {
+    background-color: #f2f2f2;
+}
+
+.movie-details__data {
+    /* Add styles for table data */
+}

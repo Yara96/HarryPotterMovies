@@ -1,14 +1,26 @@
 <h1>Harry Potter Movies</h1>
+<div>Filters</div>
+<form [formGroup]="movieFilters">
+  <input type="text" id="title" formControlName="title" placeholder="Title" />
+  <input type="text" id="releaseDate" formControlName="releaseDate" placeholder="Release Date"/>
+</form>
 <ng-container *ngIf="movies" class="movie-list">
   <span *ngFor="let movie of movies; trackBy: trackById" class="movie-card">
     <h2>{{ movie.title }}</h2>
     <div class="movie-details">
       <span>
         {{ releaseDateTitle }}: {{ movie.release_date | date : "yyyy-MM-dd" }}
-      </span> <br>
-      <span> {{ budgetTitle }}: ${{ movie.budget }} million</span> <br>
+      </span>
+      <br />
+      <span> {{ budgetTitle }}: ${{ movie.budget }} million</span> <br />
       <span>{{ durationTitle }}: {{ movie.duration }}</span>
     </div>
-    <button class="details-button" (click)="selectMovie(movie)">Details</button>
+    <button
+      class="details-button"
+      [id]="movie.id"
+      (click)="selectMovie(movie.id)"
+    >
+      Details
+    </button>
   </span>
 </ng-container>
