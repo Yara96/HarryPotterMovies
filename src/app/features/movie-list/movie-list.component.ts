@@ -12,13 +12,13 @@ import { MoviesService } from '../../core/services/movies.service';
 import { Movie } from '../../core/models/movie.model';
 import { CustomCurrencyPipe } from '../../core/pipes/custom-currency.pipe';
 import { Router, RouterOutlet } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Observable, Subscription, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-movie-list',
   standalone: true,
-  imports: [CommonModule, CustomCurrencyPipe, RouterOutlet],
+  imports: [CommonModule, CustomCurrencyPipe, RouterOutlet, ReactiveFormsModule],
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -39,7 +39,6 @@ export class MovieListComponent implements OnInit {
   protected destroyRef = inject(DestroyRef);
   private changeDetectorRef = inject(ChangeDetectorRef);
   private router = inject(Router);
-  private formBuilder = inject(FormBuilder);
 
   ngOnInit(): void {
     this.getMovieList();

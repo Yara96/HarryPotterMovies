@@ -47,11 +47,9 @@
     border-collapse: collapse;
 }
 
-/* Modifier */
 .movie-details__heading {
     background-color: #f2f2f2;
 }
 
 .movie-details__data {
-    /* Add styles for table data */
 }
