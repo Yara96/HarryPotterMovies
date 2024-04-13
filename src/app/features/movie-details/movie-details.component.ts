@@ -33,7 +33,7 @@ export class MovieDetailsComponent {
 
   private getMovieDetails(): void {
     this.route.params.subscribe((params) => {
-      this.movieId = params['id'];
+      this.movieId = params['movieId'];
       // Fetch movie details based on movieId
       this.moviesService
         .getMovieById(this.movieId)

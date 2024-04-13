@@ -53,7 +53,6 @@ export class MovieListComponent implements OnInit {
   }
 
   protected selectMovie(movie: Movie): void {
-    this.moviesService.setSelectedMovie(movie);
     this.router.navigate(['/movies', movie.id]);
   }
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MovieListComponent } from './features/movie-list/movie-list.component';
 import { CustomCurrencyPipe } from './core/pipes/custom-currency.pipe';
@@ -13,4 +13,6 @@ import { CurrencyPipe } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
+
+  @Input() routerOutletName: string = '';
 }
