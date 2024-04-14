@@ -10,7 +10,7 @@ export class DurationPipe implements PipeTransform {
       return '';
     }
 
-    const durationInMinutes = parseFloat(duration);
+    const durationInMinutes = parseInt(duration);
 
     if (isNaN(durationInMinutes)) {
       return '';

@@ -24,17 +24,18 @@ import { Observable, distinctUntilChanged, merge } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MovieListComponent implements OnInit {
+  titleControl = new FormControl('');
+  releaseDateControl = new FormControl('');
+  movieFilters: FormGroup = new FormGroup({
+    title: this.titleControl,
+    releaseDate: this.releaseDateControl,
+  });
+
   protected movies: Movie[] = [];
   protected filteredMovies: Movie[] = [];
   protected releaseDateTitle: string = 'Release Date';
   protected budgetTitle: string = 'Budget';
   protected durationTitle: string = 'Duration';
-  private titleControl = new FormControl('');
-  private releaseDateControl = new FormControl('');
-  protected movieFilters: FormGroup = new FormGroup({
-    title: this.titleControl,
-    releaseDate: this.releaseDateControl,
-  });
 
   private moviesService = inject(MoviesService);
   protected destroyRef = inject(DestroyRef);

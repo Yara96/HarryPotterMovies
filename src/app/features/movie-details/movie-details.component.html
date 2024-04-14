@@ -1,7 +1,7 @@
 <div class="movie-details">
     <button class="movie-details__button" (click)="backToHomepage()">Back to Homepage</button>
     <ng-container *ngIf="movie">
-        <h1 class="movie-details__title">{{ movie.title }}</h1>
+        <h1 class="movie-details__title" data-qa="movie-title">{{ movie.title }}</h1>
         <div class="movie-details__info">
             <img [src]="movie.poster" [alt]="movie.title" class="movie-details__image" />
             <h2>Summary:</h2>
@@ -11,7 +11,7 @@
         <table class="movie-details__table">
             <tr>
                 <th class="movie-details__heading">Box Office</th>
-                <td class="movie-details__data">{{ movie.box_office | currency: 'USD' : 'symbol'}} million</td>
+                <td class="movie-details__data">{{ movie.box_office | boxOffice}}</td>
             </tr>
             <tr>
                 <th class="movie-details__heading">Budget</th>

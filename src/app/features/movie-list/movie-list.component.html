@@ -1,13 +1,13 @@
 <h1>Harry Potter Movies</h1>
 <div>Filters</div>
 <form [formGroup]="movieFilters">
-  <input type="text" id="title" formControlName="title" placeholder="Title" />
-  <input type="text" id="releaseDate" formControlName="releaseDate" placeholder="Release Date"/>
+  <input type="text" id="title" formControlName="title" placeholder="Title" data-qa="title-filter"/>
+  <input type="text" id="releaseDate" formControlName="releaseDate" placeholder="Release Date" data-qa="releaseDateFilter"/>
 </form>
 <ng-container *ngIf="filteredMovies.length" class="movie-list">
   <span *ngFor="let movie of filteredMovies; trackBy: trackById" class="movie-card">
     <h2>{{ movie.title }}</h2>
-    <div class="movie-details">
+    <div class="movie-details" data-qa="movie-details">
       <span>
         {{ releaseDateTitle }}: {{ movie.release_date | date : "yyyy-MM-dd" }}
       </span>
