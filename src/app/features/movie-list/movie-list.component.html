@@ -4,8 +4,8 @@
   <input type="text" id="title" formControlName="title" placeholder="Title" />
   <input type="text" id="releaseDate" formControlName="releaseDate" placeholder="Release Date"/>
 </form>
-<ng-container *ngIf="movies" class="movie-list">
-  <span *ngFor="let movie of movies; trackBy: trackById" class="movie-card">
+<ng-container *ngIf="filteredMovies.length" class="movie-list">
+  <span *ngFor="let movie of filteredMovies; trackBy: trackById" class="movie-card">
     <h2>{{ movie.title }}</h2>
     <div class="movie-details">
       <span>
@@ -13,7 +13,7 @@
       </span>
       <br />
       <span> {{ budgetTitle }}: ${{ movie.budget }} million</span> <br />
-      <span>{{ durationTitle }}: {{ movie.duration }}</span>
+      <span>{{ durationTitle }}: {{ movie.duration | duration}}</span>
     </div>
     <button
       class="details-button"

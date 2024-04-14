@@ -1,8 +1,8 @@
-import { CustomCurrencyPipe } from './custom-currency.pipe';
+import { DurationPipe } from './duration.pipe';
 
 describe('CustomCurrencyPipe', () => {
   it('create an instance', () => {
-    const pipe = new CustomCurrencyPipe();
+    const pipe = new DurationPipe();
     expect(pipe).toBeTruthy();
   });
 });

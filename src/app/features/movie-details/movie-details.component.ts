@@ -9,11 +9,12 @@ import { MoviesService } from '../../core/services/movies.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Movie } from '../../core/models/movie.model';
 import { CommonModule } from '@angular/common';
+import { DurationPipe } from '../../core/pipes/duration.pipe';
 
 @Component({
   selector: 'app-movie-details-component',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, DurationPipe],
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.css',
 })

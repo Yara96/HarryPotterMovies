@@ -1,4 +1,4 @@
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -10,30 +10,31 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MoviesService } from '../../core/services/movies.service';
 import { Movie } from '../../core/models/movie.model';
-import { CustomCurrencyPipe } from '../../core/pipes/custom-currency.pipe';
+import { DurationPipe } from '../../core/pipes/duration.pipe';
 import { Router, RouterOutlet } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Observable, Subscription, switchMap } from 'rxjs';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Observable, distinctUntilChanged, merge } from 'rxjs';
 
 @Component({
   selector: 'app-movie-list',
   standalone: true,
-  imports: [CommonModule, CustomCurrencyPipe, RouterOutlet, ReactiveFormsModule],
+  imports: [CommonModule, DurationPipe, RouterOutlet, ReactiveFormsModule],
   templateUrl: './movie-list.component.html',
   styleUrl: './movie-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MovieListComponent implements OnInit {
   protected movies: Movie[] = [];
+  protected filteredMovies: Movie[] = [];
   protected releaseDateTitle: string = 'Release Date';
   protected budgetTitle: string = 'Budget';
   protected durationTitle: string = 'Duration';
+  private titleControl = new FormControl('');
+  private releaseDateControl = new FormControl('');
   protected movieFilters: FormGroup = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-  }); //check this default value later
-  // protected releaseDateResults$: Observable<Movie[]> = [];
-
+    title: this.titleControl,
+    releaseDate: this.releaseDateControl,
+  });
 
   private moviesService = inject(MoviesService);
   protected destroyRef = inject(DestroyRef);
@@ -42,10 +43,18 @@ export class MovieListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovieList();
-    // this.releaseDateResults$ = this.releaseDateControl.valueChanges
-    //  .pipe(
-   //     switchMap(releaseDate => this.searchService.search(searchString))
-    //  )
+
+    const releaseDateChanges$: Observable<string | null> =
+      this.releaseDateControl.valueChanges.pipe(distinctUntilChanged());
+    const searchTermChanges$: Observable<string | null> =
+      this.titleControl.valueChanges.pipe(distinctUntilChanged());
+
+    merge(releaseDateChanges$, searchTermChanges$).subscribe(() => {
+      this.filteredMovies = this.filterMovies(
+        this.movieFilters.get('releaseDate')?.value,
+        this.movieFilters.get('title')?.value
+      );
+    });
   }
 
   trackById(index: number, item: Movie): string {
@@ -60,8 +69,29 @@ export class MovieListComponent implements OnInit {
         movies.forEach((movie: Movie) => {
           this.movies.push(movie);
         });
+        this.filteredMovies = this.movies;
         this.changeDetectorRef.markForCheck();
       });
+  }
+
+  private filterMovies(releaseDate: string, title: string): Movie[] {
+    let filteredList = this.movies;
+    let releaseDateFilterValue = releaseDate.trim();
+    let titleFilterValue = title.trim().toLowerCase();
+
+    if (releaseDateFilterValue) {
+      filteredList = filteredList.filter((movie) =>
+        movie.release_date.includes(releaseDate)
+      );
+    }
+
+    if (titleFilterValue) {
+      filteredList = filteredList.filter((movie) =>
+        movie.title.toLowerCase().includes(titleFilterValue)
+      );
+    }
+
+    return filteredList;
   }
 
   protected selectMovie(movieId: string): void {
