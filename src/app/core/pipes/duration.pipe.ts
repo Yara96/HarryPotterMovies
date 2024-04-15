@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+ * A pipe created to format the duration value in hours and minutes.
+ */
 @Pipe({
   name: 'duration',
   standalone: true,

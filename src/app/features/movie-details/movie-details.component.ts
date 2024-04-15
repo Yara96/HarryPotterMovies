@@ -12,6 +12,9 @@ import { CommonModule } from '@angular/common';
 import { DurationPipe } from '../../core/pipes/duration.pipe';
 import { BoxOfficePipe } from '../../core/pipes/box-office.pipe';
 
+/**
+ * Movie Details component displaying the selected movie details.
+ */
 @Component({
   selector: 'app-movie-details-component',
   standalone: true,

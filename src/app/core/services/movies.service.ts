@@ -3,6 +3,9 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Movie } from '../models/movie.model';
 
+/**
+ * Service created to fetch the movie list and individually requested movies.
+ */
 @Injectable({
   providedIn: 'root'
 })

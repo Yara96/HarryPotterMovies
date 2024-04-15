@@ -1,5 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+/**
+ * A pipe to format the box office value to be displayed in millions.
+ */
 @Pipe({
   name: 'boxOffice',
   standalone: true,

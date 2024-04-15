@@ -15,6 +15,9 @@ import { Router, RouterOutlet } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Observable, distinctUntilChanged, merge } from 'rxjs';
 
+/**
+ * Movie List component including the filters.
+ */
 @Component({
   selector: 'app-movie-list',
   standalone: true,
