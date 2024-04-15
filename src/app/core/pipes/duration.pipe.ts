@@ -14,14 +14,14 @@ export class DurationPipe implements PipeTransform {
       return '';
     }
 
-    const durationInMinutes = parseInt(duration);
+    const durationInMinutes: number = parseInt(duration);
 
     if (isNaN(durationInMinutes)) {
       return '';
     }
 
-    const hours = Math.floor(durationInMinutes / 60);
-    const minutes = durationInMinutes % 60;
+    const hours: number = Math.floor(durationInMinutes / 60);
+    const minutes: number = durationInMinutes % 60;
 
     return `${hours}h ${minutes}min`;
   }

@@ -12,7 +12,7 @@ import { MoviesService } from '../../core/services/movies.service';
 import { Movie } from '../../core/models/movie.model';
 import { DurationPipe } from '../../core/pipes/duration.pipe';
 import { Router, RouterOutlet } from '@angular/router';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Form, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Observable, distinctUntilChanged, merge } from 'rxjs';
 
 /**
@@ -28,11 +28,11 @@ import { Observable, distinctUntilChanged, merge } from 'rxjs';
 })
 
 export class MovieListComponent implements OnInit {
-  titleControl = new FormControl('');
-  releaseDateControl = new FormControl('');
+  titleControl: FormControl = new FormControl(null);
+  releaseYearControl: FormControl = new FormControl(null);
   movieFilters: FormGroup = new FormGroup({
     title: this.titleControl,
-    releaseDate: this.releaseDateControl,
+    releaseYear: this.releaseYearControl,
   });
 
   protected movies: Movie[] = [];
@@ -49,14 +49,14 @@ export class MovieListComponent implements OnInit {
   ngOnInit(): void {
     this.getMovieList();
    
-    const releaseDateChanges$: Observable<string | null> =
-      this.releaseDateControl.valueChanges.pipe(distinctUntilChanged());
-    const searchTermChanges$: Observable<string | null> =
+    const releaseYearChanges$: Observable<string | null> =
+      this.releaseYearControl.valueChanges.pipe(distinctUntilChanged());
+    const titleChanges$: Observable<string | null> =
       this.titleControl.valueChanges.pipe(distinctUntilChanged());
 
-    merge(releaseDateChanges$, searchTermChanges$).subscribe(() => {
+    merge(releaseYearChanges$, titleChanges$).subscribe(() => {
       this.filteredMovies = this.filterMovies(
-        this.movieFilters.get('releaseDate')?.value,
+        this.movieFilters.get('releaseYear')?.value,
         this.movieFilters.get('title')?.value
       );
 
@@ -82,14 +82,13 @@ export class MovieListComponent implements OnInit {
       });
   }
 
-  private filterMovies(releaseDate: string, title: string): Movie[] {
-    let filteredList = this.movies;
-    let releaseDateFilterValue = releaseDate.trim();
-    let titleFilterValue = title.trim().toLowerCase();
+  private filterMovies(releaseYear: number, title: string): Movie[] {
+    let filteredList: Movie[]= this.movies;
+    let titleFilterValue: string = title?.trim().toLowerCase();
 
-    if (releaseDateFilterValue) {
+    if (releaseYear) {
       filteredList = filteredList.filter((movie) =>
-        movie.release_date.includes(releaseDate)
+        movie.release_date.includes(releaseYear.toString())
       );
     }
 

@@ -62,8 +62,8 @@ describe('MovieDetailsComponent', () => {
   });
 
   it('should navigate back to homepage with movieId when button clicked', () => {
-    const button = fixture.debugElement.nativeElement.querySelector('button');
-    button.click();
+    const button: HTMLButtonElement = fixture.debugElement.nativeElement.querySelector('button');
+    button?.click();
 
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/movies']);
   });

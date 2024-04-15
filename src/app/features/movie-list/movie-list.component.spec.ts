@@ -1,7 +1,7 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { MovieListComponent } from './movie-list.component';
 import { MoviesService } from '../../core/services/movies.service';
-import { ChangeDetectorRef, ElementRef} from '@angular/core';
+import { ChangeDetectorRef, DebugElement, ElementRef} from '@angular/core';
 import { of } from 'rxjs';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Movie } from '../../core/models/movie.model';
@@ -71,19 +71,19 @@ describe('MovieListComponent', () => {
     expect(fixture.debugElement.queryAll(By.css('[data-qa="movie-info"]'))).toBeDefined();
   });
 
-  it('should filter movies by release date and title', () => {
-    component.movieFilters.setValue({ releaseDate: '2002-11-15', title: 'Harry Potter and the Chamber of Secrets' });
+  it('should filter movies by release year and title', () => {
+    component.movieFilters.setValue({ releaseYear: 2002, title: 'Harry Potter and the Chamber of Secrets' });
     fixture.detectChanges();
 
-    const movieDetailElements = fixture.debugElement.queryAll(By.css('[data-qa="movie-info"]'));
+    const movieDetailElements: DebugElement[] = fixture.debugElement.queryAll(By.css('[data-qa="movie-info"]'));
 
     expect(movieDetailElements.length).toBe(1);
   });
 
   it('should navigate to movie details page when a movie is selected', () => {
-    const movieId = '1';
-    const button = fixture.debugElement.query(By.css(`[id="${movieId}"]`));
-    button.triggerEventHandler('click', null);
+    const movieId: string = '1';
+    const button: DebugElement = fixture.debugElement.query(By.css(`[id="${movieId}"]`));
+    button?.triggerEventHandler('click', null);
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/movies', movieId]);
   });
 });

@@ -10,13 +10,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class BoxOfficePipe implements PipeTransform {
   transform(value: string): string {
-    const numericValue = parseFloat(value?.replace(/,/g, ''));
+    const numericValue: number = parseFloat(value?.replace(/,/g, ''));
 
     if (isNaN(numericValue)) {
       return '';
     }
 
-    const formattedValue = numericValue.toLocaleString('en-US', {
+    const formattedValue: string = numericValue.toLocaleString('en-US', {
       style: 'currency',
       currency: 'USD',
       minimumFractionDigits: 0,

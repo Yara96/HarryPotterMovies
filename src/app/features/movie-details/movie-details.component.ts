@@ -33,7 +33,7 @@ export class MovieDetailsComponent {
   private changeDetectorRef = inject(ChangeDetectorRef);
   protected destroyRef = inject(DestroyRef);
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getMovieDetails();
   }
 

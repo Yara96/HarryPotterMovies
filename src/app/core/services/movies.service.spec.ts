@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
+  TestRequest,
 } from '@angular/common/http/testing';
 import { MoviesService } from './movies.service';
 import { HttpClient } from '@angular/common/http';
@@ -34,7 +35,7 @@ describe('MoviesService', () => {
 
     describe('getMovieById', () => {
       it('should return a single movie by ID', () => {
-        const movieId = 'e80d5a37-620e-4be2-92b9-fb1f5262494f';
+        const movieId: string = 'e80d5a37-620e-4be2-92b9-fb1f5262494f';
         const expectedMovie: Movie = {
           id: 'e80d5a37-620e-4be2-92b9-fb1f5262494f',
           title: "Harry Potter and the Philosopher's Stone",
@@ -50,11 +51,11 @@ describe('MoviesService', () => {
             'Harry Potter’s dull life is completely changed on his eleventh birthday when a mysterious letter addressed to him arrives in the mail. After finding out about his real parents and a whole hidden wizarding world, he goes on to Hogwarts, his new magical school. From battling a troll to flying on broomsticks to catch golden snitches, Harry’s new life promises to be full of joy and adventure, until he finds out about a certain Dark Lord who murdered his parents is trying to regain power. With his friends Hermione and Ron, Harry sets out to find the philosopher’s stone before Voldemort to prevent his return. After advancing through a particularly difficult set of traps designed by the school, Harry faces the Dark Lord and manages to keep the Philosopher’s Stone safe.',
         };
 
-        service.getMovieById(movieId).subscribe((movie) => {
+        service.getMovieById(movieId).subscribe((movie: Movie) => {
           expect(movie).toEqual(expectedMovie);
         });
 
-        const req = httpTestingController.expectOne(`/movies/${movieId}`);
+        const req: TestRequest = httpTestingController.expectOne(`/movies/${movieId}`);
         expect(req.request.method).toEqual('GET');
         req.flush(expectedMovie);
       });
@@ -93,11 +94,11 @@ describe('MoviesService', () => {
           },
         ];
 
-        service.getMovies().subscribe((movies) => {
+        service.getMovies().subscribe((movies: Movie[]) => {
           expect(movies).toEqual(expectedMovies);
         });
 
-        const req = httpTestingController.expectOne(`/movies`);
+        const req: TestRequest = httpTestingController.expectOne(`/movies`);
         expect(req.request.method).toEqual('GET');
         req.flush(expectedMovies);
       });

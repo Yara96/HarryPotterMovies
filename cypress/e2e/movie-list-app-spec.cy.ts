@@ -12,8 +12,8 @@ describe('Harry Potter Movies', () => {
     cy.get('[data-qa="movie-item"]').should('have.length.gt', 0);
   });
 
-  it('should filter movies by release date and title', () => {
-    cy.get('[data-qa="release-date-filter"]').type('2002-11-15');
+  it('should filter movies by release year and title', () => {
+    cy.get('[data-qa="release-year-filter"]').type('2002');
     cy.get('[data-qa="title-filter"]').type('Chamber of Secrets');
 
     cy.get('[data-qa="movie-info"]').should('have.length', 1);

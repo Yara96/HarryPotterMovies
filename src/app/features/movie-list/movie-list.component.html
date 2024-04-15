@@ -2,7 +2,7 @@
 <div>Filters</div>
 <form [formGroup]="movieFilters">
   <input type="text" id="title" formControlName="title" placeholder="Title" data-qa="title-filter"/>
-  <input type="text" id="releaseDate" formControlName="releaseDate" placeholder="Release Date" data-qa="release-date-filter"/>
+  <input type="number" id="releaseYear" formControlName="releaseYear" placeholder="Release Year" data-qa="release-year-filter"/>
 </form>
 <ng-container *ngIf="filteredMovies.length" class="movie-list">
   <span *ngFor="let movie of filteredMovies; trackBy: trackById" class="movie__item" data-qa="movie-item">
