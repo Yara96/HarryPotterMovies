@@ -36,9 +36,6 @@
 
 .movie-details__summary {
     flex: 1;
-}
-
-.movie-details__summary p {
     margin: 0;
 }
 
@@ -48,8 +45,5 @@
 }
 
 .movie-details__heading {
-    background-color: #f2f2f2;
-}
-
-.movie-details__data {
+    background-color: #cab7a2;
 }

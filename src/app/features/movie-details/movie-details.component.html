@@ -1,4 +1,4 @@
-<div class="movie-details">
+<div class="movie-details" data-qa="movie-details">
     <button class="movie-details__button" (click)="backToHomepage()">Back to Homepage</button>
     <ng-container *ngIf="movie">
         <h1 class="movie-details__title" data-qa="movie-title">{{ movie.title }}</h1>
@@ -11,23 +11,23 @@
         <table class="movie-details__table">
             <tr>
                 <th class="movie-details__heading">Box Office</th>
-                <td class="movie-details__data">{{ movie.box_office | boxOffice}}</td>
+                <td>{{ movie.box_office | boxOffice}}</td>
             </tr>
             <tr>
                 <th class="movie-details__heading">Budget</th>
-                <td class="movie-details__data">${{ movie.budget }} million</td>
+                <td>${{ movie.budget }} million</td>
             </tr>
             <tr>
                 <th class="movie-details__heading">Duration</th>
-                <td class="movie-details__data">{{ movie.duration | duration}}</td>
+                <td>{{ movie.duration | duration}}</td>
             </tr>
             <tr>
                 <th class="movie-details__heading">Producers</th>
-                <td class="movie-details__data">{{ movie.producers }}</td>
+                <td>{{ movie.producers }}</td>
             </tr>
             <tr>
                 <th class="movie-details__heading">Cinematographers</th>
-                <td class="movie-details__data">{{ movie.cinematographers }}</td>
+                <td>{{ movie.cinematographers }}</td>
             </tr>
         </table>
     </ng-container>

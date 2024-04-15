@@ -68,14 +68,14 @@ describe('MovieListComponent', () => {
 
   it('should fetch movie list on initialization', () => {
     expect(moviesServiceSpy.getMovies).toHaveBeenCalled();
-    expect(fixture.debugElement.queryAll(By.css('[data-qa="movie-details"]'))).toBeDefined();
+    expect(fixture.debugElement.queryAll(By.css('[data-qa="movie-info"]'))).toBeDefined();
   });
 
   it('should filter movies by release date and title', () => {
     component.movieFilters.setValue({ releaseDate: '2002-11-15', title: 'Harry Potter and the Chamber of Secrets' });
     fixture.detectChanges();
 
-    const movieDetailElements = fixture.debugElement.queryAll(By.css('[data-qa="movie-details"]'));
+    const movieDetailElements = fixture.debugElement.queryAll(By.css('[data-qa="movie-info"]'));
 
     expect(movieDetailElements.length).toBe(1);
   });
