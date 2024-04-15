@@ -19,6 +19,12 @@ describe('Harry Potter Movies', () => {
     cy.get('[data-qa="movie-info"]').should('have.length', 1);
   });
 
+  it('should display empty list if there is no match', () => {
+    cy.get('[data-qa="release-year-filter"]').type('2003');
+
+    cy.get('[data-qa="movie-info"]').should('have.length', 0);
+  });
+
   it('should navigate to movie details page when clicking on a details button', () => {
     cy.get('[data-qa="movie-details-button"]').first().click();
     cy.wait(2000);
