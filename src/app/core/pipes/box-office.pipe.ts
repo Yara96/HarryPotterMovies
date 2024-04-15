@@ -7,6 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'boxOffice',
   standalone: true,
 })
+
 export class BoxOfficePipe implements PipeTransform {
   transform(value: string): string {
     const numericValue = parseFloat(value?.replace(/,/g, ''));

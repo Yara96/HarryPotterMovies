@@ -1,4 +1,4 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -6,7 +6,6 @@ import {
 import { MoviesService } from './movies.service';
 import { HttpClient } from '@angular/common/http';
 import { Movie } from '../models/movie.model';
-import { of } from 'rxjs';
 
 describe('MoviesService', () => {
   let service: MoviesService;

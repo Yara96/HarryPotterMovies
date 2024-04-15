@@ -26,6 +26,7 @@ import { Observable, distinctUntilChanged, merge } from 'rxjs';
   styleUrl: './movie-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class MovieListComponent implements OnInit {
   titleControl = new FormControl('');
   releaseDateControl = new FormControl('');

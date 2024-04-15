@@ -7,6 +7,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'duration',
   standalone: true,
 })
+
 export class DurationPipe implements PipeTransform {
   transform(duration: string): string {
     if (!duration) {

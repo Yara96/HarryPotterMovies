@@ -9,6 +9,7 @@ import { Movie } from '../models/movie.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class MoviesService {
 
   constructor() { }

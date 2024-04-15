@@ -22,6 +22,7 @@ import { BoxOfficePipe } from '../../core/pipes/box-office.pipe';
   templateUrl: './movie-details.component.html',
   styleUrl: './movie-details.component.css',
 })
+
 export class MovieDetailsComponent {
   movieId: string = '';
   movie: Movie = {} as Movie;
