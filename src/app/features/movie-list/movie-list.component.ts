@@ -44,7 +44,7 @@ export class MovieListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMovieList();
-
+   
     const releaseDateChanges$: Observable<string | null> =
       this.releaseDateControl.valueChanges.pipe(distinctUntilChanged());
     const searchTermChanges$: Observable<string | null> =
@@ -55,6 +55,8 @@ export class MovieListComponent implements OnInit {
         this.movieFilters.get('releaseDate')?.value,
         this.movieFilters.get('title')?.value
       );
+
+      this.changeDetectorRef.markForCheck();
     });
   }
 
@@ -70,6 +72,7 @@ export class MovieListComponent implements OnInit {
         movies.forEach((movie: Movie) => {
           this.movies.push(movie);
         });
+
         this.filteredMovies = this.movies;
         this.changeDetectorRef.markForCheck();
       });

@@ -8,7 +8,7 @@ import { Movie } from '../../core/models/movie.model';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
-fdescribe('MovieListComponent', () => {
+describe('MovieListComponent', () => {
   let component: MovieListComponent;
   let fixture: ComponentFixture<MovieListComponent>;
   let moviesServiceSpy: jasmine.SpyObj<MoviesService>;
