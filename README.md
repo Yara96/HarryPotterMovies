@@ -1,6 +1,6 @@
 # HarryPotterMovies
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.1. It is part of my Angular Training intermediate certification.
 
 ## Development server
 
@@ -20,7 +20,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 ## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. I have implemented some e2e integration tests using Cypress.
 
 ## Further help
 
